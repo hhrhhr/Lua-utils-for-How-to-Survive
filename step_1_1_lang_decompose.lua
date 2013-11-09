@@ -102,12 +102,14 @@ for i = 1, h.data[2].count do
     local tmp       = r:str(8)  -- skip 8 bytes
     local size      = 0
 
-    if fourcc == 1481851972 then    -- "DDSX"
+    if     fourcc == 1481851972 then    -- "DDSX"
         size = r:uint32()
-    elseif fourcc == 0 then         -- raw
+    elseif fourcc == 860247111 then     -- "GTF3"
+        size = r:uint32()
+    elseif fourcc == 0 then             -- raw
         size = unkn1
     else
-        assert(false, "\n\n!!! unknown fourcc: " .. fourcc)
+        assert(false, "\n\n!!! unknown fourcc: " .. fourcc .. ", pos: " .. r:pos()-12)
     end
 
     local pos = r:pos() + size
