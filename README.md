@@ -7,14 +7,14 @@ Lua-utils-for-How-to-Survive
 * Lua 5.2 (http://www.lua.org)
 * BMFont **1.14 beta** (http://www.angelcode.com/products/bmfont/)
 
-использование (быстрое)
+использование (быстрое внедрение готового перевода)
 -----------------------
 
 * скачать готовый архив с Lua (http://sourceforge.net/projects/luabinaries/files/latest/download)
 * распаковать в корень (минимум `lua52.exe` и `lua52.dll`)
 * выполнить команду
 
-        lua52 step_1_1_lang_decompose.lua work
+        lua52 step_1_1_lang_decompose.lua путь-к-Common_PC.eng work
 * скопировать в каталог `work` готовый перевод (файл `text_new.txt` в кодировке *CP-1251*)
 * выполнить последовательно
 
