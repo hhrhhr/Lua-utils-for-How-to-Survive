@@ -17,7 +17,7 @@ end
 local dir = arg[1] or "."
 
 local w = BinaryWriter
-w:open(dir .. "/Common_PC.rus")
+w:open(dir .. "/Common_PC.new")
 
 local r = assert(io.open(dir .. "/part_0.bin"))
 local h = {}
