@@ -2,10 +2,16 @@ package.path = "./?.luac;./?.lua"
 require("util_binary_reader")
 
 local dir = arg[1] or "."
-local no_convert = (arg[2] or false)
+local no_convert = (arg[2] or nil)
+
+print()
 
 local source = {}
 if no_convert ~= nil then
+    for i = 1, 256 do
+        table.insert(source, i)
+    end
+else
     source = {
      48,  49,  50,  51,  52,  53,  54,  55,  56,  57,  97,  98,  99, 100, 101, 102,  -- 16
     103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118,  -- 32
@@ -24,10 +30,6 @@ if no_convert ~= nil then
      64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  -- 240
      64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64,  64   -- 256
     }
-else
-    for i = 1, 256 do
-        table.insert(source, i)
-    end
 end
 
 
@@ -64,6 +66,11 @@ for k, v in ipairs(lang) do
         if v.unkn ~= 0 then
             assert(false, "!!! " .. k)
         end
+    elseif k == 68 then
+        w:write(string.format("%4d [%10u] = ", k, v.unkn))
+        w:write(string.rep("_", 31))
+        for i=31, 255 do w:write(string.char(i)) end
+        w:write("\n")
     else
         w:write(string.format("%4d [%10u] = %s\n", k, v.unkn, v.str))
     end
